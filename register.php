@@ -10,7 +10,7 @@ if(isset($_POST['testEnvoi'])){
 				echo "Inscription OK";
 				}
 				
-			catch (PDOException $e){
+			catch (Exception $e){
 				die('Erreur : ' .$e->getMessage());
 			}
 			
