@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 14 Mars 2018 à 22:50
+-- Généré le :  Dim 04 Décembre 2016 à 22:24
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -19,9 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `ateliernfa021`
 --
-CREATE DATABASE `ateliernfa021` default character set utf8;
 
-use `ateliernfa021`;
 -- --------------------------------------------------------
 
 --
@@ -31,19 +29,19 @@ use `ateliernfa021`;
 CREATE TABLE `utilisateur` (
   `ID` int(11) NOT NULL,
   `nom` varchar(25) NOT NULL,
-  `prenom` varchar(25) NOT NULL
+  `prenom` varchar(25) NOT NULL,
+  `specialite` varchar(25) NOT NULL,
+  `mail` varchar(25) NOT NULL,
+  `daten` date NOT NULL,
+  `passworda` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID`, `nom`, `prenom`) VALUES
-(1, 'TALEMCI', 'AMINE'),
-(17, 'DEMAISON', 'Chloe'),
-(20, 'Baizet', 'Mickael'),
-(21, 'Fontaine', 'Arnaud'),
-(22, 'Herole', 'Nico');
+INSERT INTO `utilisateur` (`ID`, `nom`, `prenom`, `specialite`, `mail`, `daten`, `passworda`) VALUES
+(1, 'TALEMCI', 'AMINE', 'professeur', 'talemci.amine@gmail.to', '2016-12-02', '1edc5f380d3f13e6bc9e00d85e808196baa8a73c');
 
 --
 -- Index pour les tables exportées
@@ -53,7 +51,8 @@ INSERT INTO `utilisateur` (`ID`, `nom`, `prenom`) VALUES
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `mail` (`mail`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -63,7 +62,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
