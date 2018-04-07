@@ -1,5 +1,36 @@
 <?php
-// TODO
+session_start();
+if (isset($_POST['submit'])){
+    $login=$_POST['login'];
+    $password=$_POST['password'];
+    if(empty($login)){
+        echo"<div class='erreur'> Veuillez saisir votre login</div>";
+    } else if (empty($password)){
+        echo "<div class='erreur'> Veuillez saisir votre mot de passe</div>";
+    }
+    else {
+        
+        try{
+            $bdd=new PDO('mysql:host=localhost;dbname=ateliernfa021', 'root', '');
+            $password=sha1($password);
+            $reponse = $bdd->prepare("SELECT * FROM utilisateur WHERE mail= :login AND passworda= :password")or exit(print_r($bdd->errorInfo()));
+            $reponse->bindParam(':login', $login, PDO::PARAM_STR);
+            $reponse->bindParam(':password', $password, PDO::PARAM_STR);
+            $reponse->execute();
+            
+        }catch (Exception $e){
+            die('Erreur : ' .$e->getMessage());
+        }
+        if ($reponse->rowCount()==1){
+            $_SESSION['username']=$login;
+            $_SESSION['mdp']=$password;
+            header('Location:membre.php');
+            
+        }else {
+            echo "<div class='erreur'> Login ou mot de passe erroné !!</div>";
+        }
+    }
+}
 ?>
 
 <html>

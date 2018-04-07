@@ -1,1 +1,1 @@
-# exemplePDO
+# Corrigé inscription/authentification
