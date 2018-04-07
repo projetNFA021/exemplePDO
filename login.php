@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once 'PDOConnection.php';
 if (isset($_POST['submit'])){
     $login=$_POST['login'];
     $password=$_POST['password'];
@@ -11,7 +12,7 @@ if (isset($_POST['submit'])){
     else {
         
         try{
-            $bdd=new PDO('mysql:host=localhost;dbname=ateliernfa021', 'root', '');
+            $bdd=PDOConnection::getInstance();
             $password=sha1($password);
             $reponse = $bdd->prepare("SELECT * FROM utilisateur WHERE mail= :login AND passworda= :password")or exit(print_r($bdd->errorInfo()));
             $reponse->bindParam(':login', $login, PDO::PARAM_STR);
@@ -27,7 +28,7 @@ if (isset($_POST['submit'])){
             header('Location:membre.php');
             
         }else {
-            echo "<div class='erreur'> Login ou mot de passe erronÃ© !!</div>";
+            echo utf8_encode("<div class='erreur'> Login ou mot de passe erroné !!</div>");
         }
     }
 }
