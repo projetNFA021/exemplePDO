@@ -6,7 +6,7 @@ class PDOConnection
     
     public static function getInstance() {
         if (!isset(self::$_instance))
-            self::$_instance = new PDO('mysql:host=localhost;dbname=ateliernfa021', 'root', '');
+            self::$_instance = new PDO('mysql:host=mysqlserverexemple.mysql.database.azure.com;dbname=exemplebdd', 'talem.bdd@mysqlserverexemple', 'Myoujd@88');
             
             return self::$_instance;
     }
